@@ -53,6 +53,12 @@ class JoblyApi {
     return res.jobs;
   }
 
+  // Get the current user
+  static async getCurrUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
   // Apply the current user to a job
   static async applyToJob(username, id) {
     let res = await this.request(`users/${username}/jobs/${id}`, {}, "post");
@@ -78,11 +84,5 @@ class JoblyApi {
     return res.user;
   }
 }
-
-// for now, put token ("testuser" / "password" on class)
-JoblyApi.token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 export default JoblyApi;

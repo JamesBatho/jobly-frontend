@@ -4,16 +4,20 @@ import { BrowserRouter } from "react-router-dom";
 import JoblyApi from "./api";
 import UserContext from "./auth/UserContext";
 import jwt from "jsonwebtoken";
-import Routes from "./Routes";
+import Routes from "./routes/Routes";
+import useLocalStorage from "./hooks/useLocalStorage";
+
+// key for local storage
+export const TOKEN_STORAGE_ID = "jobly-token";
 
 function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [currUser, setCurrUser] = useState([]);
   const [applicationIds, setApplicationIds] = useState(new Set([]));
 
   useEffect(
     function loadUserInfo() {
-      async function getCurrUser() {
+      async function getCurrentUser() {
         if (token) {
           try {
             let { username } = jwt.decode(token);
@@ -22,11 +26,12 @@ function App() {
             setCurrUser(currUser);
             setApplicationIds(new Set(currUser.applications));
           } catch (err) {
+            console.error("App loadUserInfo: problem loading", err);
             setCurrUser(null);
           }
         }
       }
-      getCurrUser();
+      getCurrentUser();
     },
     [token]
   );
@@ -50,6 +55,7 @@ function App() {
     try {
       let token = await JoblyApi.signup(data);
       setToken(token);
+      console.log(token);
       return { success: true };
     } catch (err) {
       return { success: false, err };
@@ -72,7 +78,7 @@ function App() {
         value={{ currUser, setCurrUser, hasAppliedToJob, applyToJob }}
       >
         <div className="App">
-          <Routes login={login} signup={signup}></Routes>
+          <Routes login={login} signup={signup} logout={logout}></Routes>
         </div>
       </UserContext.Provider>
     </BrowserRouter>

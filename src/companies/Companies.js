@@ -16,6 +16,7 @@ function Companies() {
       setCompanies(companyList);
     }
     loadCompanies();
+    console.log(companies);
   }, []);
 
   const handleSubmit = (e) => {
