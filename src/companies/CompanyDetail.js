@@ -16,6 +16,8 @@ function CompanyDetail() {
   }, [params]);
   const { name, description, numEmployees, jobs } = company;
 
+  if (!company.jobs) return <h2> Your page is loading...</h2>;
+
   return (
     <div className="CompanyDetail">
       <h3> {name} </h3>
@@ -26,7 +28,16 @@ function CompanyDetail() {
       </p>
       <h4> Jobs </h4>
       <div className="Jobs">
-        {/* jobs here but how to get them from company? */}
+        {jobs.map((j) => (
+          <JobCard
+            id={j.id}
+            companyName={j.company}
+            salary={j.salary}
+            title={j.title}
+            equity={j.equity}
+            key={j.id}
+          />
+        ))}
       </div>
     </div>
   );

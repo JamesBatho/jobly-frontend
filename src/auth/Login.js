@@ -27,30 +27,39 @@ function Login({ login }) {
 
   return (
     <div className="Login">
-      <h3> Login Below </h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username"> Username </label>
-        <input
-          onChange={handleChange}
-          type="text"
-          id="username"
-          name="username"
-          placeholder="username"
-          value={formData.username}
-        />
-        <label htmlFor="password"> Password </label>
-        <input
-          onChange={handleChange}
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          value={formData.password}
-        />
+      <div className="container ">
+        <h3 className="m-2"> Login Below </h3>
 
-        <button> Login!</button>
-      </form>
-      {formErrors.length ? showFormErrors(formErrors) : null}
+        <form onSubmit={handleSubmit} className="">
+          <div className="form-group ">
+            <label htmlFor="username"> Username </label>
+            <input
+              onChange={handleChange}
+              type="text"
+              id="username"
+              name="username"
+              placeholder="username"
+              value={formData.username}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password"> Password </label>
+            <input
+              onChange={handleChange}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="password"
+              value={formData.password}
+              className="form-control"
+            />
+          </div>
+
+          <button className="btn btn-success"> Login!</button>
+        </form>
+        {formErrors.length ? showFormErrors(formErrors) : null}
+      </div>
     </div>
   );
 }

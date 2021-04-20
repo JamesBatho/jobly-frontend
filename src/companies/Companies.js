@@ -30,18 +30,23 @@ function Companies() {
   };
 
   return (
-    <div className="Companies">
+    <div className="Companies container">
+      <h2 className="mt-3 ml-2"> Jobly Company Database </h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="search"> Search for a Company:</label>
-        <input
-          value={search}
-          type="text"
-          placeholder="Search"
-          id="search"
-          onChange={(e) => handleChange(e)}
-        />
-        <button> Search</button>
+        <div className="form-group m-2">
+          <label htmlFor="search"> Search for a Company:</label>
+          <input
+            className="form-control"
+            value={search}
+            type="text"
+            placeholder="Search"
+            id="search"
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <button className="btn btn-info m-2"> Search</button>
       </form>
+      <p className="ml-2"> or click on one below!</p>
       <div className="CompanyCards">
         {companies.map(
           ({ name, logoUrl, numEmployees, description, handle }) => {

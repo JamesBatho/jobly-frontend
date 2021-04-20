@@ -6,12 +6,9 @@ function JobCard({ id, companyName, salary, title, equity }) {
   const [applied, setApplied] = useState();
   const { hasAppliedToJob, applyToJob } = useContext(UserContext);
 
-  useEffect(
-    (updateAppliedJobs) => {
-      setApplied(hasAppliedToJob(id));
-    },
-    [id, hasAppliedToJob]
-  );
+  useEffect(() => {
+    setApplied(hasAppliedToJob(id));
+  }, [id, hasAppliedToJob]);
 
   // apply to a job
   async function handleApply(e) {
@@ -25,12 +22,17 @@ function JobCard({ id, companyName, salary, title, equity }) {
     hasEquity = "Yup";
   }
   return (
-    <div className="JobCard">
-      <h3> {title} </h3>
-      <h4> {companyName} </h4>
+    <div className="JobCard card card-body">
+      <h3 className="card-title"> {title} </h3>
+      <h5 className="card-subtitle text-muted"> {companyName} </h5>
+      <br></br>
       <p> Salary: {salary}</p>
       <p> Equity: {hasEquity}</p>
-      <button onClick={handleApply} disabled={applied}>
+      <button
+        className="btn btn-success"
+        onClick={handleApply}
+        disabled={applied}
+      >
         {applied ? "Applied" : "Apply"}
       </button>
     </div>

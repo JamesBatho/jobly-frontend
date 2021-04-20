@@ -12,13 +12,16 @@ function CompanyCard({ name, logoUrl, numEmployees, description, handle }) {
   let logo = undefined;
   if (logoUrl) {
     const alt = `logo for ${name}`;
-    logo = <img src={logoUrl} alt={alt}></img>;
+    logo = <img className="float-right" src={logoUrl} alt={alt} />;
   }
   return (
-    <div onClick={() => redirect(handle)} className="CompanyCard">
-      <h3> {name} </h3>
+    <div
+      onClick={() => redirect(handle)}
+      className="CompanyCard card card-body"
+    >
+      <h3 className="card-title"> {name} </h3>
       {logo}
-      <p> {description}</p>
+      <p className=""> {description}</p>
     </div>
   );
 }

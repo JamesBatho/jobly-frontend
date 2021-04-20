@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import JoblyApi from "./api";
 import UserContext from "./auth/UserContext";
+import { useHistory } from "react-router-dom";
 
 function Profile() {
   const { currUser, setCurrUser } = useContext(UserContext);
@@ -13,6 +14,12 @@ function Profile() {
     username: currUser.username,
     password: "",
   });
+
+  let history = useHistory();
+
+  const redirect = (handle) => {
+    history.push(`/`);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -53,15 +60,15 @@ function Profile() {
   }
 
   return (
-    <div className="Profile">
-      <h2> Profile </h2>
+    <div className="Profile container">
+      <h2 className="mt-2"> Profile </h2>
       <form>
         <div className="form-group">
-          <label> Username </label>
-          <p> {formData.username} </p>
+          <label> Username: </label>
+          <p className=""> {formData.username} </p>
         </div>
         <div className="form-group">
-          <label htmlFor="firstName"> First Name</label>
+          <label htmlFor="firstName"> First Name:</label>
           <input
             name="firstName"
             className="form-control"
@@ -70,7 +77,7 @@ function Profile() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="lastName"> Last Name </label>
+          <label htmlFor="lastName"> Last Name: </label>
           <input
             name="lastName"
             className="form-control"
@@ -79,7 +86,7 @@ function Profile() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email"> Email </label>
+          <label htmlFor="email"> Email: </label>
           <input
             name="email"
             type="email"
@@ -89,7 +96,7 @@ function Profile() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="lastName"> Enter Password to Save</label>
+          <label htmlFor="lastName"> Enter Password to Save:</label>
           <input
             name="lastName"
             className="form-control"
@@ -97,7 +104,13 @@ function Profile() {
             onChange={handleChange}
           />
         </div>
-        <button onClick={handleSubmit}> Save</button>
+        <button className="btn btn-success m-2" onClick={handleSubmit}>
+          Save
+        </button>
+        <button className="btn btn-danger m-2" onClick={() => redirect()}>
+          {" "}
+          Cancel{" "}
+        </button>
       </form>
       {formErrors.length ? showFormErrors(formErrors) : null}
     </div>

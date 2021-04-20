@@ -8,15 +8,21 @@ function Home() {
   const { currUser } = useContext(UserContext);
 
   return (
-    <div className="Homepage">
-      <h1> Jobly </h1>
-      <p> Find what you'll be doing tomorrow, today!</p>
+    <div className="Homepage container text-center">
+      <h1 className="m-2"> Jobly </h1>
+      <p className="">
+        <i>Find what you'll be doing tomorrow, today!</i>
+      </p>
       {currUser ? (
         <h3> Welcome back, {currUser.firstName} </h3>
       ) : (
         <p>
-          <Link to="/login"> Login Here </Link>
-          <Link to="/signup"> Sign Up Here </Link>
+          <Link to="/login" className="btn btn-info m-2">
+            Login Here
+          </Link>
+          <Link to="/signup" className="btn btn-info m-2">
+            Sign Up Here
+          </Link>
         </p>
       )}
     </div>

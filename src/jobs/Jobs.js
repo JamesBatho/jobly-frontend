@@ -29,17 +29,21 @@ function Jobs() {
   };
 
   return (
-    <div className="jobs">
+    <div className="jobs container">
+      <h2 className="mt-3"> Jobly Job Database </h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="search"> Search for a Job:</label>
-        <input
-          value={search}
-          type="text"
-          placeholder="Search"
-          id="search"
-          onChange={(e) => handleChange(e)}
-        />
-        <button> Search</button>
+        <div className="form-group">
+          <label htmlFor="search"> Search for a Job:</label>
+          <input
+            className="form-control"
+            value={search}
+            type="text"
+            placeholder="Search"
+            id="search"
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <button className="btn btn-info"> Search</button>
       </form>
       <div className="JobCards">
         {jobs.map(({ id, companyName, salary, title, equity }) => {

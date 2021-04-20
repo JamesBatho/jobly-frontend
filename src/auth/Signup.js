@@ -33,55 +33,70 @@ function Signup({ signup }) {
   };
 
   return (
-    <div className="Signup">
-      <h3> Signup for Jobly!</h3>
+    <div className="Signup container">
+      <h3 className="m-3"> Signup for Jobly!</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username"> Username </label>
-        <input
-          onChange={handleChange}
-          type="text"
-          id="username"
-          name="username"
-          placeholder="username"
-          value={formData.username}
-        />
-        <label htmlFor="password"> Password </label>
-        <input
-          onChange={handleChange}
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          value={formData.password}
-        />
-        <label htmlFor="firstName"> First Name </label>
-        <input
-          onChange={handleChange}
-          type="text"
-          id="firstName"
-          name="firstName"
-          placeholder="First Name"
-          value={formData.firstName}
-        />
-        <label htmlFor="lastName"> Last Name </label>
-        <input
-          onChange={handleChange}
-          type="text"
-          id="lastName"
-          name="lastName"
-          placeholder="Last Name"
-          value={formData.lastName}
-        />
-        <label htmlFor="email"> Email </label>
-        <input
-          onChange={handleChange}
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-        />
-        <button> Signup!</button>
+        <div className="form-group">
+          <label htmlFor="username"> Username </label>
+          <input
+            onChange={handleChange}
+            type="text"
+            id="username"
+            name="username"
+            placeholder="username"
+            value={formData.username}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password"> Password </label>
+          <input
+            onChange={handleChange}
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password"
+            value={formData.password}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="firstName"> First Name </label>
+          <input
+            onChange={handleChange}
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastName"> Last Name </label>
+          <input
+            onChange={handleChange}
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email"> Email </label>
+          <input
+            onChange={handleChange}
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            className="form-control"
+          />
+        </div>
+        <button className="btn btn-success"> Signup!</button>
       </form>
       {formErrors.length > 0 ? showFormErrors(formErrors) : null}
     </div>
